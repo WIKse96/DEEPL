@@ -3,10 +3,10 @@ import pandas as pd
 
 df = pd.read_csv('./files/1.csv')
 #szefa konto
-# translator = deepl.Translator("e45abf8c-89e5-d01b-1c11-5c8b17623069:fx")
+# translator = deepl.Translator("x")
 
 #moje konto
-translator = deepl.Translator("63e31250-4ff9-159e-5ab3-3569a31a210e:fx")
+translator = deepl.Translator(x")
 
 # Tworzenie DataFrame (df) lub załaduj go z pliku CSV
 
