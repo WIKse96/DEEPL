@@ -2,7 +2,14 @@ import deepl
 import pandas as pd
 
 df = pd.read_csv('./files/1.csv')
-translator = deepl.Translator("xxx")
+#szefa konto
+# translator = deepl.Translator("e45abf8c-89e5-d01b-1c11-5c8b17623069:fx")
+
+#moje konto
+translator = deepl.Translator("63e31250-4ff9-159e-5ab3-3569a31a210e:fx")
+
+# Tworzenie DataFrame (df) lub załaduj go z pliku CSV
+
 
 j = 0
 while j < len(df):
@@ -25,27 +32,37 @@ while j < len(df):
 
         to_translate = ' '.join(untranslated_string)
 
-        # transltuj czesc
-        result = translator.translate_text(to_translate, target_lang="EN-GB")
-        translated_text = result.text
+        try:
+            # Tłumaczenie części tekstu
+            result = translator.translate_text(to_translate, target_lang="EN-GB")
+            translated_text = result.text
 
-        # połącz
-        result_spl = translated_text.split()
-        tralnslated = ' '.join(result_spl + capitalized_string + digits)
+            # Połącz przetłumaczony tekst z pozostałymi częściami
+            result_spl = translated_text.split()
+            translated = ' '.join(result_spl + capitalized_string + digits)
 
-        # pierwsza litera wielka
-        tralnslated = tralnslated[0].capitalize() + tralnslated[1:]
+            # Zróbcie pierwszą literę wielką
+            translated = translated[0].capitalize() + translated[1:]
 
-        print('Original: ', string)
-        print('Translated: ', tralnslated)
+            print('Original: ', string)
+            print('Translated: ', translated)
 
-        # Assign the translated value back to the DataFrame
-        df.loc[j, "translated"] = tralnslated
+            # Przypisz przetłumaczoną wartość z powrotem do DataFrame
+            df.loc[j, "translated"] = translated
+
+        except Exception as e:
+            # Obsłuż błąd tłumaczenia
+            print(f'Błąd w wierszu {j + 1}: {e}')
+
+            # Zapisz dotychczasowe dane "translated" w pliku "niepelny.csv"
+            df_failed = df.loc[:j, ["name", "translated"]]
+            df_failed.to_csv('./files/niepelny.csv', index=False)
+
     else:
-        # Handle cases where the value is not a string (optional)
+        # Obsłuż przypadki, w których wartość nie jest ciągiem znaków (opcjonalne)
         print('Skipped non-string value:', string)
 
     j += 1
 
-# zapisz
+# Zapisz DataFrame do pliku CSV
 df.to_csv('./files/1_updated.csv', index=False)
