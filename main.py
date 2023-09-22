@@ -2,11 +2,8 @@ import deepl
 import pandas as pd
 
 df = pd.read_csv('./files/1.csv')
-#szefa konto
-# translator = deepl.Translator("x")
 
-#moje konto
-translator = deepl.Translator(x")
+
 
 # Tworzenie DataFrame (df) lub załaduj go z pliku CSV
 
@@ -34,7 +31,7 @@ while j < len(df):
 
         try:
             # Tłumaczenie części tekstu
-            result = translator.translate_text(to_translate, target_lang="EN-GB")
+            result = translator.translate_text(to_translate, target_lang="DE")
             translated_text = result.text
 
             # Połącz przetłumaczony tekst z pozostałymi częściami
