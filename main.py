@@ -3,7 +3,7 @@ import pandas as pd
 
 df = pd.read_csv('./files/1.csv')
 
-
+#DANE DO LOGOWANIA DEEPL UKRYTE
 
 # Tworzenie DataFrame (df) lub załaduj go z pliku CSV
 
