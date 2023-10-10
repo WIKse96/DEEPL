@@ -31,6 +31,7 @@ while j < len(df):
 
         try:
             # Tłumaczenie części tekstu
+            #Do zmiany języka docelowego zmień `target_nag`
             result = translator.translate_text(to_translate, target_lang="DE")
             translated_text = result.text
 
