@@ -38,7 +38,7 @@ while j < len(df):
             result_spl = translated_text.split()
             translated = ' '.join(result_spl + capitalized_string + digits)
 
-            # Zróbcie pierwszą literę wielką
+            # Zrób pierwszą literę wielką
             translated = translated[0].capitalize() + translated[1:]
 
             print('Original: ', string)
